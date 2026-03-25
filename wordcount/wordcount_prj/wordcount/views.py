@@ -19,5 +19,31 @@ def result(request):
             word_dictionary[word] += 1
         else:
             word_dictionary[word] = 1
+    
+    # 과제: 가장 많이 입력된 단어
+    max_word = ''
+    max_count = 0
 
-    return render(request, 'result.html', {'alltext': entered_text, 'dictionary':word_dictionary.items()})
+    for word, count in word_dictionary.items():
+        if count > max_count:
+            max_count = count
+            max_word = word
+    
+    # 과제: 글자 수
+    total_len = len(entered_text)
+
+    # 과제: 글자 수 띄어쓰기 제외
+    no_space_len = len(entered_text.replace(" ", ""))
+
+    return render(request, 'result.html',
+    {'alltext': entered_text,
+    'dictionary':word_dictionary.items(),
+    'count':len(word_list),
+    'max_word':max_word,
+    'max_count': max_count,
+    'total_len':total_len,
+    'no_space_len':no_space_len})
+
+def hello(request):
+    name = request.GET['name']
+    return render(request, 'hello.html', {'name': name})
