@@ -3,6 +3,8 @@ from .models import Phone
 from django.shortcuts import get_object_or_404
 from django.db.models import Q  
 
+# 과제
+
 def list(request):
     phones = Phone.objects.all().order_by('name')
     return render(request, 'phone/list.html', {'phones': phones})
