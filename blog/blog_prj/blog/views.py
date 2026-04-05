@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from django.shortcuts import get_object_or_404
+from django.db.models import Q 
 
 def list(request):
     posts = Post.objects.all().order_by('-id') 
@@ -36,3 +37,4 @@ def delate(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect('blog:list')
+
